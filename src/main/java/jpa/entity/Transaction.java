@@ -25,6 +25,13 @@ public class Transaction implements Serializable {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, optional = false, fetch = FetchType.EAGER)
     private User buyer;
 
+    public Transaction(int quantity, int scoreTransaction, Post post, User buyer) {
+        this.quantity = quantity;
+        this.scoreTransaction = scoreTransaction;
+        this.post = post;
+        this.buyer = buyer;
+    }
+
     public Long getId() {
         return id;
     }

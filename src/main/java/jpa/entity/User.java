@@ -1,12 +1,22 @@
 package jpa.entity;
 
+import org.springframework.expression.spel.ast.NullLiteral;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
+    public User(String userName) {
+        this.userName = userName;
+        this.transactions = new HashSet<>();
+        this.posts = new HashSet<>();
+        this.following = new HashSet<>();
+    }
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)

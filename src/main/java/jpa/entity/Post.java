@@ -1,16 +1,26 @@
 package jpa.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "transactions")
-public class Post {
+@Table(name = "posts")
+public class Post implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    public Post(String postName, double price, String description, int quantityAvailable, User user) {
+        this.postName = postName;
+        this.price = price;
+        this.description = description;
+        this.quantityAvailable = quantityAvailable;
+        this.transactions = new HashSet<>();
+        this.user = user;
+    }
 
     @Column(name = "postName")
     private String postName;
