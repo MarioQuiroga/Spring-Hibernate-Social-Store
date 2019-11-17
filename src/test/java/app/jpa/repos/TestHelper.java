@@ -1,8 +1,8 @@
-package jpa.repos;
+package app.jpa.repos;
 
-import jpa.entity.Post;
-import jpa.entity.Transaction;
-import jpa.entity.User;
+import app.jpa.entity.Post;
+import app.jpa.entity.Transaction;
+import app.jpa.entity.User;
 import org.junit.rules.ExternalResource;
 import org.springframework.data.jpa.repository.JpaRepository;
 

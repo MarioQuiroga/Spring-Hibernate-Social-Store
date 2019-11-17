@@ -1,4 +1,4 @@
-package jpa.entity;
+package app.jpa.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;

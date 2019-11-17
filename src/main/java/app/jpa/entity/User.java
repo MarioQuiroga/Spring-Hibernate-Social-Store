@@ -1,6 +1,4 @@
-package jpa.entity;
-
-import org.springframework.expression.spel.ast.NullLiteral;
+package app.jpa.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;

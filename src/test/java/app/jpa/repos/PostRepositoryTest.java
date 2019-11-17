@@ -1,8 +1,8 @@
-package jpa.repos;
+package app.jpa.repos;
 
-import jpa.DataSourcesConfig;
-import jpa.entity.Post;
-import jpa.entity.User;
+import app.jpa.DataSourcesConfig;
+import app.jpa.entity.Post;
+import app.jpa.entity.User;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;

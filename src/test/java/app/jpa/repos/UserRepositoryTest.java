@@ -1,8 +1,8 @@
-package jpa.repos;
+package app.jpa.repos;
 
-import jpa.DataSourcesConfig;
-import jpa.entity.Post;
-import jpa.entity.User;
+import app.jpa.DataSourcesConfig;
+import app.jpa.entity.Post;
+import app.jpa.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,7 +13,6 @@ import org.junit.Rule;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
