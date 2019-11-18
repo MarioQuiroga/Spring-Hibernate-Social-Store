@@ -8,10 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 
-@RunWith(SpringRunner.class)
-@Transactional
-public class PostServiceTest {
 
+public class PostServiceTest {
+/*
     @Inject
     PostService postService;
 
@@ -23,11 +22,13 @@ public class PostServiceTest {
 
     @Test
     public void findByUserTest(){
-        
+
     }
 
     @Test
     public void findByDescriptionContainingTest(){
 
     }
+
+ */
 }
