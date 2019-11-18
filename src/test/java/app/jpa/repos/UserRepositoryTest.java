@@ -51,6 +51,9 @@ public class UserRepositoryTest {
 
     @Test
     public void searchByNameTest(){
+        User mario = testHelper.mario();
+        User mariano = testHelper.mariano();
+        testHelper.persist(userRepo, mario, mariano);
         List<User> founds = userRepo.findByUserNameContaining("Ma");
         assertThat(founds.get(0).getUserName()).isEqualTo("Mario Quiroga");
         assertThat(founds.get(1).getUserName()).isEqualTo("Mariano Goldman");

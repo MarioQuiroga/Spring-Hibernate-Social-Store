@@ -37,7 +37,7 @@ public class Post implements Serializable {
     @OneToMany(mappedBy = "post")
     private Set<Transaction> transactions = new HashSet<>();
 
-    @JoinColumn(name = "id_user", referencedColumnName = "id")
+    @JoinColumn(name = "id_users", referencedColumnName = "id")
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, optional = false, fetch = FetchType.EAGER)
     private User user;
 

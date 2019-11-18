@@ -12,7 +12,7 @@ public class User implements Serializable {
         this.userName = userName;
         this.transactions = new HashSet<>();
         this.posts = new HashSet<>();
-        this.following = new HashSet<>();
+        //this.following = new HashSet<>();
     }
 
     @Id
@@ -70,12 +70,24 @@ public class User implements Serializable {
         this.following = following;
     }
 
+    public Set<User> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Set<User> followers) {
+        this.followers = followers;
+    }
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-    @JoinTable(name = "following",
-               joinColumns = @JoinColumn(name = "id_user"),
-               inverseJoinColumns = @JoinColumn(name = "id_user")
+    @JoinTable(name = "rel_user_user",
+               joinColumns = @JoinColumn(name = "user_id"),
+               inverseJoinColumns = @JoinColumn(name = "following_user_id")
     )
     private Set<User> following = new HashSet<>();
+
+    @ManyToMany(mappedBy = "following")
+    private Set<User> followers = new HashSet<>();
+
 
 
 }
