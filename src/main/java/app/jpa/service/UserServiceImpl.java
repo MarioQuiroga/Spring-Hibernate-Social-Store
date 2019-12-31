@@ -19,38 +19,10 @@ public class UserServiceImpl implements UserService{
         this.urepo = urepo;
     }
 
-    @Override
-    public User findByPosts(Post post) {
-        return urepo.findByPosts(post);
-    }
-
-    @Override
-    public List<User> findByUserNameContaining(String userName) {
-        return urepo.findByUserNameContaining(userName);
-    }
-
-    @Transactional
-    @Override
-    public void deleteById(Long id) {
-        urepo.deleteById(id);
-    }
-
-    @Transactional
-    @Override
-    public List<User> removeByUserName(String userName) {
-        return urepo.removeByUserName(userName);
-    }
-
     @Transactional
     @Override
     public void insert(User user) {
         urepo.save(user);
-    }
-
-    @Transactional
-    @Override
-    public void remove(User user) {
-        urepo.delete(user);
     }
 
     @Transactional

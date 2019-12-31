@@ -20,21 +20,6 @@ public class PostServiceImpl implements PostService {
         this.postRepo = postRepo;
     }
 
-    @Override
-    public List<Post> findByUser(User user) {
-        return postRepo.findByUser(user);
-    }
-
-    @Override
-    public List<Post> findByDescriptionContaining(String description) {
-        return postRepo.findByDescriptionContaining(description);
-    }
-
-    @Override
-    public List<Post> findByPostName(String postName) {
-        return postRepo.findByPostName(postName);
-    }
-
     @Transactional
     @Override
     public void deleteById(Long id) {
@@ -43,20 +28,8 @@ public class PostServiceImpl implements PostService {
 
     @Transactional
     @Override
-    public List<Post> removeByPostName(String postName) {
-        return postRepo.removeByPostName(postName);
-    }
-
-    @Transactional
-    @Override
     public void insert(Post post) {
         postRepo.save(post);
-    }
-
-    @Transactional
-    @Override
-    public void remove(Post post) {
-        postRepo.delete(post);
     }
 
     @Transactional

@@ -19,37 +19,10 @@ public class TransactionServiceImpl implements TransactionService{
         this.trepo = trepo;
     }
 
-    @Override
-    public List<Transaction> findByPost(Post post) {
-        return trepo.findByPost(post);
-    }
-
-    @Override
-    public List<Transaction> findByBuyer(User user) {
-        return trepo.findByBuyer(user);
-    }
-
-    @Override
-    public List<Transaction> findByPostAndBuyer_UserName(Post post, String userName) {
-        return trepo.findByPostAndBuyer_UserName(post, userName);
-    }
-
-    @Transactional
-    @Override
-    public void deleteById(Long id) {
-        trepo.deleteById(id);
-    }
-
     @Transactional
     @Override
     public void insert(Transaction transaction) {
         trepo.save(transaction);
-    }
-
-    @Transactional
-    @Override
-    public void remove(Transaction transaction) {
-        trepo.delete(transaction);
     }
 
     @Transactional

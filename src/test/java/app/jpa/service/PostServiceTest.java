@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 
 public class PostServiceTest {
-/*
+
     @Inject
     PostService postService;
 
@@ -21,7 +21,7 @@ public class PostServiceTest {
     TransactionService transactionService;
 
     @Test
-    public void findByUserTest(){
+    public void findTest(){
 
     }
 
@@ -30,5 +30,5 @@ public class PostServiceTest {
 
     }
 
- */
+
 }
