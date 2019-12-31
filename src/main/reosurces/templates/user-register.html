@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="includes/header :: header"></head>
+<body>
+
+<div class="container">
+    <nav th:replace="includes/header :: navig"></nav>
+
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title" th:text="#{users.newUser}" th:if="${userRegisterForm.new}">User</h1>
+            <h1 class="card-title" th:text="#{users.editUser}" th:unless="${userRegisterForm.new}">Edit user</h1>
+        </div>
+
+        <div class="card-body">
+            <form th:object="${userRegisterForm}" method="post">
+                <div class="container">
+                    <div class="form-group">
+                        <label for="userName"
+                               th:text="#{users.userName}">Apellido</label>
+                        <input id="userName" type="text" class="form-control" placeholder="#{users.userName}"
+                               th:field="*{userName}"
+                               th:placeholder="#{users.userName}"
+                               th:errorclass="error"/>
+                        <p th:if="${#fields.hasErrors('userName')}"
+                           th:errors="*{userName}"
+                           th:errorclass="error">User Name error</p>
+                        <small class="form-text text-muted"
+                               th:text="#{users.enterUserName}">Ingresá el apellido del autor.</small>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <button class="btn btn-primary" th:text="#{common.save}">Guardar</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<div th:replace="includes/footer :: footer"> </div>
+
+</body>
+</html>

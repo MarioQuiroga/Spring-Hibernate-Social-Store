@@ -1,5 +1,7 @@
 package app.jpa.entity;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -7,7 +9,12 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class User extends AuditableBaseEntity implements Serializable {
+
+    public User(){
+
+    }
     public User(String userName) {
         this.userName = userName;
         this.transactions = new HashSet<>();

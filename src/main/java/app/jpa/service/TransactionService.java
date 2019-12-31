@@ -10,6 +10,8 @@ import java.util.List;
 public interface TransactionService {
     List<Transaction> findByPost(Post post);
 
+    Transaction find(long id);
+
     List<Transaction> findByBuyer(User user);
 
     List<Transaction> findByPostAndBuyer_UserName(Post post, String userName);

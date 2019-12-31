@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="includes/header :: header"></head>
+
+<body>
+<div class="container">
+    <nav th:replace="includes/header-users :: navig"></nav>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h1 class="card-title" th:text="#{users.userName}+': '+${user.userName}">User Name</h1>
+            <a class="btn btn-primary"
+               href="/users/id/edit"
+               th:href="'/users/'+${user.id}+'/edit'" th:text="#{common.editProfile}">Edit Profile</a>
+        </div>
+
+        <div class="card-body">
+            <h3 class="card-title" th:text="#{header.yourPosts}">your posts</h3>
+            <p th:if="${#lists.isEmpty(user.posts)}"
+               th:text="#{posts.noPosts}">.</p>
+            <table class="table table-striped table-hover" th:unless="${#lists.isEmpty(user.posts)}">
+                <thead>
+                <tr>
+                    <th class="active" th:text="#{posts.postName}">Post Name</th>
+                    <th class="active" th:text="#{common.description}">Description</th>
+                    <th class="active" th:text="#{common.price}">Price</th>
+                    <th class="active" th:text="#{common.quantityAvailable}">Available</th>
+                    <th class="active"></th>
+                </tr>
+                </thead>
+
+                <tr th:each="post : ${user.posts}">
+                    <td th:text="${post.postName}">Name</td>
+                    <td th:text="${post.description}">Desc</td>
+                    <td th:text="${post.price}">Price</td>
+                    <td th:text="${post.quantityAvailable}">Count</td>
+                    <td>
+                        <a class="btn btn-primary"
+                           th:href="'/posts/'+${user.getId()}+'/'+${post.getId()}+'/edit'"
+                           th:text="#{common.edit}">Edit
+                        </a>
+                        <a class="btn btn-primary"
+                           th:href="'/posts/'+${user.getId()}+'/'+${post.getId()}+'/delete'"
+                           th:text="#{common.delete}">Delete
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+            <a class="btn btn-primary"
+               href="/posts/id/new"
+               th:href="'/posts/'+${user.id}+'/new'" th:text="#{common.new}">New Post</a>
+
+
+        </div>
+    </div>
+
+    <div th:replace="includes/footer :: footer">
+
+    </div>
+</div>
+</body>
+</html>

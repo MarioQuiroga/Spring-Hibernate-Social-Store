@@ -1,11 +1,17 @@
 package app.jpa.entity;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "transactions")
-public class Transaction implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class Transaction extends AuditableBaseEntity implements Serializable {
+    public Transaction(){
+
+    }
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,11 +23,22 @@ public class Transaction implements Serializable {
     @Column(name = "scoreTransaction")
     private int scoreTransaction;
 
-    @JoinColumn(name = "id_post", referencedColumnName = "id")
+    @Column(name = "state")
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    @JoinColumn(name = "post_id", referencedColumnName = "id")
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, optional = false, fetch = FetchType.EAGER)
     private Post post;
 
-    @JoinColumn(name = "id_user", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, optional = false, fetch = FetchType.EAGER)
     private User buyer;
 
@@ -30,6 +47,7 @@ public class Transaction implements Serializable {
         this.scoreTransaction = scoreTransaction;
         this.post = post;
         this.buyer = buyer;
+        this.state = "send";
     }
 
     public Long getId() {

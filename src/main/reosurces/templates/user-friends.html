@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="includes/header :: header"></head>
+
+<body>
+<div class="container">
+    <nav th:replace="includes/header-users :: navig"></nav>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h1 class="card-title" th:text="${user.userName}">User Name</h1>
+        </div>
+
+        <div class="card-body">
+            <h3 class="card-title" th:text="#{users.friends}">Your Friends</h3>
+            <p th:if="${#lists.isEmpty(user.following)}"
+               th:text="#{users.noFriends}">.</p>
+            <table class="table table-striped table-hover" th:unless="${#lists.isEmpty(user.following)}">
+                <thead>
+                <tr>
+                    <th class="active" th:text="#{users.userName}">User Name</th>
+                    <th class="active"></th>
+                </tr>
+                </thead>
+
+                <tr th:each="friend : ${user.following}">
+                    <td th:text="${friend.getUserName()}">Name</td>
+                    <td>
+                        <a class="btn btn-primary"
+                          th:href="'/users/'+${user.getId()}+'/unfollow/'+${friend.getId()}"
+                          th:text="#{common.unfollow}">Unfollow
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+    <div th:replace="includes/footer :: footer">
+
+    </div>
+</div>
+</body>
+</html>

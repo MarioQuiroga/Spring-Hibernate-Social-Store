@@ -16,6 +16,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> removeByUserName(String userName);
 
-    //List<User> findByFollowers(User user);
+    List<User> findByFollowers(User user);
 
 }

@@ -1,13 +1,21 @@
 package app.jpa.entity;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "posts")
-public class Post implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class Post extends AuditableBaseEntity implements Serializable, Comparable<Post>{
+
+    public Post(){
+
+    }
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,18 +34,18 @@ public class Post implements Serializable {
     private String postName;
 
     @Column(name = "price")
-    private double price;
+    private Double price;
 
     @Column(name = "description")
     private String description;
 
     @Column(name = "quantityAvailable")
-    private int quantityAvailable;
+    private Integer quantityAvailable;
 
     @OneToMany(mappedBy = "post")
     private Set<Transaction> transactions = new HashSet<>();
 
-    @JoinColumn(name = "id_users", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, optional = false, fetch = FetchType.EAGER)
     private User user;
 
@@ -57,7 +65,7 @@ public class Post implements Serializable {
         this.postName = postName;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
@@ -73,7 +81,7 @@ public class Post implements Serializable {
         this.description = description;
     }
 
-    public int getQuantityAvailable() {
+    public Integer getQuantityAvailable() {
         return quantityAvailable;
     }
 
@@ -95,5 +103,10 @@ public class Post implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public int compareTo(Post o) {
+        return this.getCreatedOn().compareTo(o.getCreatedOn());
     }
 }

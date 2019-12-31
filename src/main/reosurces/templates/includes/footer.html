@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+<div th:fragment="footer">
+    <!-- jQuery (es necesario porque estamos usando plugins de JavaScript de Bootstrap) -->
+    <script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
+
+    <script type="text/javascript">
+        $('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
+    </script>
+    <script type="text/javascript" th:src="@{/js/getScore.js}">
+    </script>
+</div>
+</body>
+</html>

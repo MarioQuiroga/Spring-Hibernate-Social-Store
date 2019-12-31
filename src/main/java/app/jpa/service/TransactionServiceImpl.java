@@ -57,4 +57,9 @@ public class TransactionServiceImpl implements TransactionService{
     public void update(Transaction transaction) {
         trepo.save(transaction);
     }
+
+    @Override
+    public Transaction find(long id){
+        return trepo.findById(id).orElse(null);
+    }
 }

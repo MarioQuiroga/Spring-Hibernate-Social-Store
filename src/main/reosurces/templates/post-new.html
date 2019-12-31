@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="includes/header :: header"></head>
+
+<body>
+<div class="container">
+    <nav th:replace="includes/header-users :: navig"></nav>
+
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title" th:text="#{posts.new}">New Post</h1>
+        </div>
+
+        <div class="card-body">
+            <h4 class="card-title" th:text="#{header.allFields}">All fields are required</h4>
+            <form th:object="${postNewForm}" method="post">
+                <div class="container">
+                    <div class="form-group">
+                        <label for="postName"
+                               th:text="#{posts.postName}">Post Name</label>
+                        <input id="postName" type="text" class="form-control" placeholder="#{posts.postName}"
+                               th:field="*{postName}"
+                               th:placeholder="#{posts.postName}"
+                               th:errorclass="error"/>
+                        <p th:if="${#fields.hasErrors('postName')}"
+                           th:errors="*{postName}"
+                           th:errorclass="error">Post Name error</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="description"
+                               th:text="#{common.description}">Description</label>
+                        <input id="description" type="text" class="form-control" placeholder=""
+                               th:field="*{description}"
+                               th:placeholder="#{common.description}"
+                               th:errorclass="error"/>
+
+                        <p th:if="${#fields.hasErrors('Description')}"
+                           th:errors="*{description}"
+                           th:errorclass="error">Post Description error</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="price"
+                               th:text="#{common.price}">Price</label>
+                        <input id="price" type="number" class="form-control" placeholder=""
+                               th:field="*{price}"
+                               th:placeholder="#{common.price}"
+                               th:errorclass="error"/>
+
+                        <p th:if="${#fields.hasErrors('price')}"
+                           th:errors="*{price}"
+                           th:errorclass="error">Price error</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantityAvailable"
+                               th:text="#{common.quantityAvailable}">Price</label>
+                        <input id="quantityAvailable" type="number" class="form-control" placeholder=""
+                               th:field="*{quantityAvailable}"
+                               th:placeholder="#{common.quantityAvailable}"
+                               th:errorclass="error"/>
+
+                        <p th:if="${#fields.hasErrors('quantityAvailable')}"
+                           th:errors="*{quantityAvailable}"
+                           th:errorclass="error">Quantity error</p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <button class="btn btn-primary" th:text="#{common.save}">Guardar</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+
+    <div th:replace="includes/footer :: footer">
+
+    </div>
+</div>
+</body>
+</html>

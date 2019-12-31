@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -56,5 +57,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public void update(User user) {
         urepo.save(user);
+    }
+
+    @Override
+    public Optional<User> find(Long id) {
+        return urepo.findById(id);
     }
 }

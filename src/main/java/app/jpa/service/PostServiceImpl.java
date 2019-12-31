@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -62,5 +63,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public void update(Post post) {
         postRepo.save(post);
+    }
+
+    @Override
+    public Optional<Post> find(Long id) {
+        return postRepo.findById(id);
     }
 }

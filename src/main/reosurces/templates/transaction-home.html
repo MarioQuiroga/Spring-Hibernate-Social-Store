@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="includes/header :: header"></head>
+
+<body>
+<div class="container">
+    <nav th:replace="includes/header-users :: navig"></nav>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h1 class="card-title" th:text="#{users.transaction}">User Name</h1>
+        </div>
+
+        <div class="card-body">
+            <h3 class="card-title" th:text="#{transactions.recentBuys}">Recent Buys</h3>
+            <p th:if="${#lists.isEmpty(transactions)}"
+               th:text="#{transactions.noTransactions}">.</p>
+            <table class="table table-striped table-hover" th:unless="${#lists.isEmpty(transactions)}">
+                <thead>
+                <tr>
+                    <th class="active" th:text="#{transactions.seller}">Seller</th>
+                    <th class="active" th:text="#{posts.postName}">Post Name</th>
+                    <th class="active" th:text="#{common.description}">Description</th>
+                    <th class="active" th:text="#{common.price}">Price</th>
+                    <th class="active" th:text="#{common.quantity}">Available</th>
+                    <th class="active" th:text="#{common.state}">State</th>
+                    <th class="active"></th>
+                </tr>
+                </thead>
+
+                <tr th:each="transaction : ${transactions}">
+                    <td th:text="${transaction.getPost().getUser().getUserName()}">Name</td>
+                    <td th:text="${transaction.getPost().getPostName()}">Name</td>
+                    <td th:text="${transaction.getPost().getDescription()}">Desc</td>
+                    <td th:text="${transaction.getPost().getPrice()}">Price</td>
+                    <td th:text="${transaction.getQuantity()}">Count</td>
+                    <td th:text="${transaction.getState()}">State</td>
+                    <td>
+                           <p class="btn btn-primary" th:if="${transaction.getState()}=='confirm'"
+                            th:text="#{common.scorer}"
+                            th:onclick="'getScore('+${transaction.getId()}+')'"
+                            ></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card-body">
+            <h3 class="card-title" th:text="#{transactions.recentSell}">Recent Sells</h3>
+            <p th:if="${#lists.isEmpty(sells)}"
+               th:text="#{transactions.noTransactions}">.</p>
+            <table class="table table-striped table-hover" th:unless="${#lists.isEmpty(sells)}">
+                <thead>
+                <tr>
+                    <th class="active" th:text="#{transactions.buyer}">Buyer</th>
+                    <th class="active" th:text="#{posts.postName}">Post Name</th>
+                    <th class="active" th:text="#{common.description}">Description</th>
+                    <th class="active" th:text="#{common.price}">Price</th>
+                    <th class="active" th:text="#{common.quantity}">Quantity</th>
+                    <th class="active" th:text="#{common.state}">State</th>
+                    <th class="active"></th>
+                </tr>
+                </thead>
+
+                <tr th:each="transaction : ${sells}">
+                    <td th:text="${transaction.getBuyer().getUserName()}">Name</td>
+                    <td th:text="${transaction.getPost().getPostName()}">Name</td>
+                    <td th:text="${transaction.getPost().getDescription()}">Desc</td>
+                    <td th:text="${transaction.getPost().getPrice()}">Price</td>
+                    <td th:text="${transaction.getQuantity()}">Count</td>
+                    <td th:text="${transaction.getState()}">State</td>
+                    <td><a class="btn btn-primary" th:if="${transaction.getState()}=='send'"
+                           th:href="'/transactions/confirm/'+${transaction.getId()}+'/'+${transaction.getPost().getUser().getId()}"
+                           th:text="#{common.confirm}">
+                    </a>
+                    </td>
+
+
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div th:replace="includes/footer :: footer">
+
+    </div>
+</div>
+</body>
+</html>

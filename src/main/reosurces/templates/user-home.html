@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="includes/header :: header"></head>
+
+<body>
+<div class="container">
+    <nav th:replace="includes/header-users :: navig"></nav>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h1 class="card-title" th:text="#{header.welcome}+' '+${user.userName}">User Name</h1>
+        </div>
+
+        <div class="card-body">
+            <h3 class="card-title" th:text="#{header.recentPosts}">Recent Post</h3>
+            <p th:if="${#lists.isEmpty(newPosts)}"
+               th:text="#{posts.noPosts}">.</p>
+            <table class="table table-striped table-hover" th:unless="${#lists.isEmpty(newPosts)}">
+                <thead>
+                <tr>
+                    <th class="active" th:text="#{users.userName}">User Name</th>
+                    <th class="active" th:text="#{posts.postName}">Post Name</th>
+                    <th class="active" th:text="#{common.description}">Description</th>
+                    <th class="active" th:text="#{common.price}">Price</th>
+                    <th class="active" th:text="#{common.quantityAvailable}">Available</th>
+                    <th class="active"></th>
+                </tr>
+                </thead>
+
+                <tr th:each="post : ${newPosts}">
+                    <td th:text="${post.getUser().getUserName()}">Name</td>
+                    <td th:text="${post.postName}">Name</td>
+                    <td th:text="${post.description}">Desc</td>
+                    <td th:text="${post.price}">Price</td>
+                    <td th:text="${post.quantityAvailable}">Count</td>
+                    <td>
+                        <a class="btn btn-primary"
+                           th:href="'/transactions/'+${user.getId()}+'/'+${post.getId()}+'/'+${post.getUser().getId()}"
+                           th:text="#{common.buy}">Buy
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+    <div th:replace="includes/footer :: footer">
+
+    </div>
+</div>
+</body>
+</html>

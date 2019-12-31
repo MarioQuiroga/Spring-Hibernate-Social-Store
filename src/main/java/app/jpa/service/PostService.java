@@ -5,6 +5,7 @@ import app.jpa.entity.User;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PostService {
     List<Post> findByUser(User user);
@@ -27,4 +28,6 @@ public interface PostService {
 
     @Transactional
     void update(Post post);
+
+    Optional<Post> find(Long id);
 }
